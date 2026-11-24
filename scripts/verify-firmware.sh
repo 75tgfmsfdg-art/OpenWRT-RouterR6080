@@ -21,9 +21,9 @@ if [ ! -f "$file" ]; then
 fi
 
 if command -v sha256sum >/dev/null 2>&1; then
-  actual=$(sha256sum "$file" | awk '{print tolower($1)}')
+  actual=$(sha256sum < "$file" | awk '{print tolower($1)}')
 elif command -v shasum >/dev/null 2>&1; then
-  actual=$(shasum -a 256 "$file" | awk '{print tolower($1)}')
+  actual=$(shasum -a 256 < "$file" | awk '{print tolower($1)}')
 else
   echo "Install a SHA-256 utility (sha256sum or shasum) and retry." >&2
   exit 2

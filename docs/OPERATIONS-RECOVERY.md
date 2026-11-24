@@ -27,6 +27,21 @@ Write down the current firmware version and keep a copy of the matching vendor r
 
 ## Routine upgrade
 
+### R6080 / WireGuard data-loss prevention checklist
+
+Before flashing, complete every item below and stop if any item is uncertain:
+
+- Export a fresh LuCI backup, download it to encrypted/offline storage, and make a second local copy. Do not upload it to GitHub or send it in chat.
+- Check the backup contents/list for `/etc/config/network` (WireGuard interface and peer settings, including router-side private keys), `/etc/config/firewall`, `/etc/config/wireless`, and any other project-specific `/etc/config/*` files.
+- Record the installed package list and save the exact package names needed for WireGuard support and LuCI management. Packages installed separately are not carried inside the sysupgrade image and may need to be reinstalled after flashing.
+- Back up any custom files outside the standard preserved config set, such as `/etc/wireguard/`, custom firewall includes, hotplug scripts, cron jobs, or files listed in `/etc/sysupgrade.conf`. Keep keys and client profiles private.
+- Separately preserve WireGuard client profiles stored on phones/computers. A router backup does not back up those remote client files.
+- Keep a recovery route available: a wired computer, the correct R6080 device page, and stable power. Do not start if the backup or recovery path is unavailable.
+
+During the LuCI upgrade, select **Keep settings** only when the device accepts the R6080 sysupgrade image without a warning that indicates an unsupported transition. Stop if the option is unavailable, image compatibility is rejected, or any warning is unclear. Never force an image check.
+
+After reboot, verify the model and release, WAN/LAN/Wi-Fi, the WireGuard interface and peer handshakes, routes, firewall rules, DNS, and one real client connection. Reinstall required packages, then verify any custom service/scripts. Keep the old image and recovery notes until all checks pass.
+
 1. Identify the exact model and current release in LuCI or `ubus call system board`.
 2. Check OpenWrt's device page and release notes for current support and known upgrade requirements.
 3. Select the exact device's **sysupgrade** image from the official Firmware Selector. Never use another model's file or a factory image for routine in-place upgrades.

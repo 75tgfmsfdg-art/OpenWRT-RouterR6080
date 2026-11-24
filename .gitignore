@@ -1,0 +1,21 @@
+# Never commit router exports, firmware images, or machine/network-specific reports.
+*.tar.gz
+*.backup
+*.img
+*.bin
+*.chk
+*.conf
+*.pcap
+*.log
+.env*
+!*.env.example
+secrets/
+private/
+reports/
+captures/
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt

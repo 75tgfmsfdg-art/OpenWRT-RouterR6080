@@ -14,9 +14,9 @@ A local file named `openwrt-25.12.2-ramips-mt76x8-netgear_r6080-squashfs-factory
 
 ## Prepared security update
 
-OpenWrt 25.12.6 is the current stable release. Its announcement recommends updating because it fixes multiple remotely reachable vulnerabilities in services enabled by default, including LuCI's web server. The official release directory provides the R6080 `squashfs-sysupgrade.bin` with SHA-256 `20586d130edb7659757484aca334dfca6c89d4d954770de9f1c209d7798a17d4`. That image was downloaded to the local Downloads folder and both checksum helper scripts verified it. It is not stored in this public repository and has not been flashed.
+OpenWrt 25.12.6 is the current stable release. Its announcement recommends updating because it fixes multiple remotely reachable vulnerabilities in services enabled by default, including LuCI's web server. The official release directory provides the R6080 `squashfs-sysupgrade.bin` with SHA-256 `20586d130edb7659757484aca334dfca6c89d4d954770de9f1c209d7798a17d4`. That image was downloaded and both checksum helper scripts verified it; it was later moved into the owner's local OpenWrt desktop folder. It is not stored in this public repository and has not been flashed.
 
-**Owner decision (2026-11-24): defer the upgrade.** Keep the router on OpenWrt 25.12.2 for now. The verified 25.12.6 image remains in the local Downloads folder for later review; no configuration backup has been created and no firmware has been flashed.
+**Owner decision (2026-11-24): defer the upgrade.** Keep the router on OpenWrt 25.12.2 for now. The verified 25.12.6 image is retained locally for later review; no firmware has been flashed. A local backup archive dated 2026-11-22 was found; its file list includes `etc/config/network`, `etc/config/firewall`, and `etc/config/wireless`, but its contents have not been inspected and its date predates the recent WireGuard work. Do not treat it as a current pre-upgrade backup. Generate a fresh backup immediately before any future upgrade and verify its file list.
 
 ## WireGuard and settings preservation
 

@@ -14,6 +14,8 @@ This page records relevant upstream code repositories and binary package sources
 
 - [OpenWrt 25.12.6 R6080 target directory](https://downloads.openwrt.org/releases/25.12.6/targets/ramips/mt76x8/) — exact R6080 factory, initramfs, and sysupgrade images with published SHA-256 values.
 - [OpenWrt 25.12.6 ramips/mt76x8 base package index](https://downloads.openwrt.org/releases/25.12.6/targets/ramips/mt76x8/packages/) — target-specific packages, including kernel-coupled components.
+- [Official OpenWrt Attended Sysupgrade server](https://sysupgrade.openwrt.org/) — builds custom, device-specific sysupgrade images with selected packages preinstalled. A successful build is only an image artifact; it does not install the image on the router.
+- [Attended Sysupgrade source repository](https://github.com/openwrt/asu) — official ASU server source and its client/build workflow.
 - [OpenWrt downloads release index](https://downloads.openwrt.org/releases/) — confirms the currently published stable release and its official feeds.
 - [OpenWrt 25.12.6 announcement](https://lists.openwrt.org/pipermail/openwrt-announce/2026-October/000090.html) — release changes and security notes.
 

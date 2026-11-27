@@ -16,7 +16,7 @@ A local file named `openwrt-25.12.2-ramips-mt76x8-netgear_r6080-squashfs-factory
 
 OpenWrt 25.12.6 is the current stable release. Its announcement recommends updating because it fixes multiple remotely reachable vulnerabilities in services enabled by default, including LuCI's web server. The official release directory provides the R6080 `squashfs-sysupgrade.bin` with SHA-256 `20586d130edb7659757484aca334dfca6c89d4d954770de9f1c209d7798a17d4`. That image was downloaded and both checksum helper scripts verified it; it was later moved into the owner's local OpenWrt desktop folder. It is not stored in this public repository and has not been flashed.
 
-**Historical owner decision (2026-11-24): defer the upgrade.** On 2026-11-26 the owner granted broad authorization to continue router work, superseding that deferral. The live router has still not been upgraded: this session could not authenticate to SSH or LuCI, and a current backup has not been made or inspected. A local backup dated 2026-11-22 predates the recent WireGuard and client-routing changes; do not treat it as a current pre-upgrade backup. Before upgrading, obtain an authenticated admin session and create/inspect a fresh backup.
+**Historical owner decision (2026-11-24): defer the upgrade.** On 2026-11-26 the owner granted broad authorization to continue router work, superseding that deferral. The live router has still not been upgraded. An authenticated LuCI session became available on 2026-11-27 for read-only checks, but direct SSH authentication still fails and a current backup has not been verified. A local backup dated 2026-11-22 predates the recent WireGuard and client-routing changes; do not treat it as a current pre-upgrade backup. Before upgrading, verify a fresh backup and use the authenticated admin interface.
 
 ## WireGuard and settings preservation
 
@@ -38,7 +38,9 @@ To assess whether the writable overlay could be reduced without removing LuCI or
 
 ## Device-specific WAN bypass verification
 
-The owner added a second Fire Stick's IPv4 WAN-bypass policy using a persistent DHCP reservation, a source policy rule to lookup table 100, and a matching IPv4 LAN-to-WAN firewall rule. The supplied live checks show the new rule active at priority 10001 and its route lookup using the WAN gateway/table 100. A comparison client remains routed through `WireguardVPN`. The owner then confirmed streaming apps work on the second Fire Stick, completing the end-to-end check. Device labels and home-network IP/MAC details are intentionally omitted from this project record.
+The owner added a second Fire Stick's IPv4 WAN-bypass policy using a persistent DHCP reservation, a source policy rule to lookup table 100, and a matching IPv4 LAN-to-WAN firewall rule. The supplied live checks showed the new rule active at priority 10001 and its route lookup using the WAN gateway/table 100. A comparison client remained routed through `WireguardVPN`. The owner then confirmed streaming apps work on the second Fire Stick, completing the end-to-end check. Device labels and home-network IP/MAC details are intentionally omitted from this project record.
+
+An authenticated LuCI read-only check on 2026-11-27 confirmed the router is still on 25.12.2 and that active IPv4 rules at priorities 10000 and 10001 select table 100 for the two authorized client exceptions; the main default route remains WireGuard. The overview showed both clients connected. No router settings were changed. A fresh configuration archive was requested, but IDM displayed a duplicate-download prompt and the archive could not be located and verified; backup readiness remains pending.
 
 ## Non-flashing custom-image simulation (2026-11-26)
 

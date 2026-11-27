@@ -12,6 +12,7 @@ This is a community field guide. It is not an official OpenWrt or NETGEAR projec
 - [Cross-platform host setup](docs/CROSS-PLATFORM.md)
 - [Routine operation and recovery](docs/OPERATIONS-RECOVERY.md)
 - [Privacy and safe sharing](docs/PRIVACY.md)
+- [Verified upstream source repositories and package feeds](docs/RESOURCES.md)
 - `scripts/verify-firmware.ps1` and `scripts/verify-firmware.sh` — local SHA-256 checks; they do not download or flash firmware.
 
 ## Quick route

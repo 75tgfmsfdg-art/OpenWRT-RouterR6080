@@ -24,3 +24,15 @@ The 25.12.6 sysupgrade image does not itself contain this router's configuration
 
 Firmware versions and instructions change. This documentation intentionally points to the official live Firmware Selector, release directory, and device page instead of freezing a firmware binary in the repository. Check these sources immediately before every installation or upgrade.
 
+## Package feed and inventory snapshot (owner-supplied, 2026-11-26)
+
+The router's `apk update` output showed the standard OpenWrt 25.12.2 feeds for the `ramips/mt76x8` target and `mipsel_24kc` architecture: target packages, kernel modules matching kernel `6.12.74-1`, base, LuCI, packages, routing, telephony, and video. The fetch completed successfully with 11,014 package records. No third-party repository was present in this output. These are already the standard official feeds; adding unrelated feeds is not needed.
+
+The supplied `apk list --upgradable` output showed 16 updates: 14 LuCI components and `ppp` plus `ppp-mod-pppoe`. The installed list includes LuCI, WireGuard and its LuCI protocol page, PPPoE, firewall, Wi-Fi, and core networking packages. Preserve these functions during any cleanup. The earlier `apk list upgradable` line without `--` returned no output; the later `apk list --upgradable` command is the meaningful result.
+
+The owner supplied `df -h /overlay`: `/dev/mtdblock6`, size 1.4 MiB, 988 KiB used, 420 KiB available (70%), mounted at `/overlay`. The later `du -ak /overlay/upper` listing totals 1,704 KiB by file/path accounting; the largest subtree is `/overlay/upper/www/luci-static/resources` at 1,295 KiB, including network/status views and icons. This looks like installed LuCI web-interface content, not an orphaned cache or log directory. `du`'s total exceeds the `df` used space; this may reflect compression or accounting differences, so do not treat the `du` values as reclaimable physical space. The installed package list is primarily the base system and LuCI plus Wi-Fi, firewall, PPPoE, and WireGuard components; it shows no obvious standalone application to remove. Removing LuCI would sacrifice the management interface and is not recommended for this setup. No package update, feed change, or removal is recorded from this snapshot. The owner had previously chosen to defer the 25.12.6 firmware upgrade; keep that decision in effect unless changed explicitly.
+
+## Device-specific WAN bypass verification
+
+The owner added a second Fire Stick's IPv4 WAN-bypass policy using a persistent DHCP reservation, a source policy rule to lookup table 100, and a matching IPv4 LAN-to-WAN firewall rule. The supplied live checks show the new rule active at priority 10001 and its route lookup using the WAN gateway/table 100. A comparison client remains routed through `WireguardVPN`. The owner then confirmed streaming apps work on the second Fire Stick, completing the end-to-end check. Device labels and home-network IP/MAC details are intentionally omitted from this project record.
+
